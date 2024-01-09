@@ -16,7 +16,7 @@ const hari_pulang = "1-5";
 
 const jobAbsenDatang = CronJob.from({
   cronTime: `0 ${menit_datang} ${jam_datang} * * ${hari_datang}`,
-  onTick: ()=>botAbsensi(process.env.URL, process.env.EMAIL_USER, process.env.PASSWORD_USER, false),
+  onTick: ()=>botAbsensi(process.env.URL, process.env.EMAIL_USER, process.env.PASSWORD_USER, true),
   start: true,
   timeZone: "Asia/Jakarta",
 });
@@ -25,7 +25,7 @@ jobAbsenDatang.start();
 
 const jobAbsenPulang = CronJob.from({
   cronTime: `0 ${menit_pulang} ${jam_pulang} * * ${hari_pulang}`,
-  onTick: ()=>botAbsensi(process.env.URL, process.env.EMAIL_USER, process.env.PASSWORD_USER, false),
+  onTick: botAbsensi(process.env.URL, process.env.EMAIL_USER, process.env.PASSWORD_USER, true),
   start: true,
   timeZone: "Asia/Jakarta",
 });

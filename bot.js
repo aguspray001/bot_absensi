@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer";
 
-export const botAbsensi = async (url, email, password, presensi=false) => {
+export const botAbsensi = async (url, email, password, presensi = false) => {
   //open web
   const browser = await puppeteer.launch({
     headless: false,
@@ -57,6 +57,11 @@ export const botAbsensi = async (url, email, password, presensi=false) => {
 
   if (presensi === true) {
     //click presensi button
-    //page.click("#app > div > div.main-content > section > div.section-body > div.row.mt-sm-4 > div > div > div > form > button")
+    await page.click("#app > div > div.main-content > section > div.section-body > div.row.mt-sm-4 > div > div > div > form > button")
   }
+
+  //   logout
+  await page.waitForTimeout(2000);
+  const logoutButton = "#sidebar-wrapper > ul > li:nth-child(3) > a";
+  await page.click(logoutButton);
 };
