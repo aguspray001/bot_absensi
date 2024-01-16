@@ -57,7 +57,17 @@ export const botAbsensi = async (url, email, password, presensi = false) => {
 
   if (presensi === true) {
     //click presensi button
-    await page.click("#app > div > div.main-content > section > div.section-body > div.row.mt-sm-4 > div > div > div > form > button")
+    const absenButtonSelector = "#app > div > div.main-content > section > div.section-body > div.row.mt-sm-4 > div > div > div > form > button > img"
+    // await page.click(absenButtonSelector)
+      // Assuming the button has a type attribute set to "submit"
+      await page.waitForSelector(absenButtonSelector);
+      const button = await page.$(absenButtonSelector);
+      if (button) {
+        console.log('Button found, clicking...');
+        await button.click();
+      } else {
+        console.log('Button not found.');
+      }
   }
 
   //   logout
